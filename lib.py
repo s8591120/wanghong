@@ -71,10 +71,12 @@ def display_all_records(db_path):
     if not records:
         print("=>查無資料")
     else:
-        print("姓名\t性別\t手機")
+        print("{:<15}\t{:<12}\t{:<10}".format("姓名", "性別", "手機"))
         print("-" * 25)
         for record in records:
-            print(f"{record[1]}\t{record[2]}\t{record[3]}")
+            print(
+             "{:<15}\t{:<15}\t{:<15}".format(record[1], record[2], record[3])
+                 )
 
 
 def add_record(db_path, name, gender, phone):
@@ -142,4 +144,4 @@ def delete_all_records(db_path):
     """
     with sqlite3.connect(db_path) as conn:
         conn.execute("DELETE FROM members")
-    print("=>異動所有記錄")
+    print(f"=>異動 {len(db_path)} 筆記錄")
